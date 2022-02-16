@@ -28,7 +28,9 @@ public class AppSupportJsonSuspensionDriver : ISuspensionDriver
             var result = default(object);
             using (var st = File.OpenRead(target))
             {
+                #pragma warning disable SYSLIB0011
                 result = serializer.Deserialize(st);
+                #pragma warning restore SYSLIB0011
             }
 
             return Observable.Return(result);
@@ -49,7 +51,9 @@ public class AppSupportJsonSuspensionDriver : ISuspensionDriver
 
             using (var st = File.Open(target, FileMode.Create))
             {
+                #pragma warning disable SYSLIB0011
                 serializer.Serialize(st, state);
+                #pragma warning restore SYSLIB0011
             }
 
             return Observables.Unit;
